@@ -3,7 +3,6 @@ package ru.popov.purchaserest.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.popov.purchaserest.dto.PersonDto;
 import ru.popov.purchaserest.mapper.PersonMapper;
 import ru.popov.purchaserest.models.Person;
 import ru.popov.purchaserest.repository.PersonRepository;
@@ -42,9 +41,10 @@ public class PersonService {
         personRepository.deleteById(id);
     }
     @Transactional
-    public void update(Person person) {
-       personRepository.save(person);
-
-
+    public void update(Long id, Person person) {
+       Person item = personRepository.findById(id).orElseThrow(RuntimeException::new);
+       item.setName(person.getName());
+        item.setLastName(person.getLastName());
+        item.setAge(person.getAge());
     }
 }
