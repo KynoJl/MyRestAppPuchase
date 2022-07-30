@@ -1,0 +1,53 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create_tables_person" author="Popov_Nikita">
+        <createTable tableName="person">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="name" type="VARCHAR(250)"/>
+            <column name="last_name" type="VARCHAR(250)"/>
+            <column name="age" type="bigint"/>
+        </createTable>
+<!--        <addAutoIncrement tableName="person" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1"/>-->
+    </changeSet>
+
+    <!--    <changeSet id="create_tables_product" author="Popov_Nikita">-->
+    <!--        <createTable tableName="product">-->
+    <!--            <column name="id" type="bigint">-->
+    <!--                <constraints primaryKey="true" primaryKeyName="product_id_pk"/>-->
+
+    <!--            </column>-->
+    <!--            <column name="name" type="varchar(100)"/>-->
+
+    <!--        </createTable>-->
+    <!--        <addAutoIncrement tableName="product" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1"/>-->
+    <!--    </changeSet>-->
+
+    <!--    <changeSet id="create_tables_purchaseInformation" author="Popov_Nikita">-->
+    <!--        <createTable tableName="purchaseInformation">-->
+    <!--            <column name="id" type="bigint">-->
+    <!--                <constraints primaryKey="true" primaryKeyName="purchaseInformation_id_pk"/>-->
+
+    <!--            </column>-->
+    <!--            <column name="name" type="varchar(100)"/>-->
+    <!--            <column name="lastname" type="varchar(100)"/>-->
+    <!--            <column name="age" type="int(100)"/>-->
+    <!--            <column name="product" type="varchar(100)"/>-->
+    <!--            <column name="count" type="bigint"/>-->
+    <!--            <column name="amount" type="int(100)"/>-->
+    <!--            <column name="purchase_date" type="double"/>-->
+
+    <!--        </createTable>-->
+    <!--        <addAutoIncrement tableName="purchaseInformation" columnName="id" columnDataType="bigint" startWith="1" incrementBy="1"/>-->
+    <!--    </changeSet>-->
+
+    <changeSet id="create_sequence" author="Popov_Nikita">
+        <createSequence sequenceName="hibernate_sequence" incrementBy="1" startValue="1"/>
+    </changeSet>
+
+</databaseChangeLog>
