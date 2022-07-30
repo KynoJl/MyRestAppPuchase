@@ -6,9 +6,9 @@ public class PersonDto {
     private Long id;
     private String name;
     private String lastName;
-    private Long age;
+    private int age;
 
-    public PersonDto(String name, String lastName, Long age) {
+    public PersonDto(String name, String lastName, int age) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
@@ -41,11 +41,11 @@ public class PersonDto {
         this.lastName = lastName;
     }
 
-    public Long getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(Long age) {
+    public void setAge(int age) {
         this.age = age;
     }
 }

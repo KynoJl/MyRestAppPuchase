@@ -3,7 +3,7 @@ package ru.popov.purchaserest.models;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.UUID;
+
 
 @Entity
 @Table(name="PERSON")
@@ -17,12 +17,12 @@ public class Person {
     @Column(name = "LAST_NAME")
     private String lastName;
     @Column(name = "AGE")
-    private Long age;
+    private int age;
 
     public Person() {
     }
 
-    public Person(String name, String lastName, Long age) {
+    public Person(String name, String lastName, int age) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
@@ -52,11 +52,11 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Long getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(Long age) {
+    public void setAge(int age) {
         this.age = age;
     }
 

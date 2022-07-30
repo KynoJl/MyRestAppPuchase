@@ -1,6 +1,10 @@
 package ru.popov.purchaserest.models;
 
+import liquibase.pro.packaged.I;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -13,10 +17,18 @@ public class Purchase {
     @Column(name = "NAME")
     private String name;
 
+    @OneToOne
+    @JoinColumn(name = "information_id", referencedColumnName = "id")
+    private Information information;
+
+
+
     public Purchase() {
     }
-    public Purchase(String name) {
+
+    public Purchase(String name, Information information) {
         this.name = name;
+        this.information = information;
     }
 
     public Long getId() {
@@ -35,9 +47,17 @@ public class Purchase {
         this.name = name;
     }
 
+    public Information getInformation() {
+        return information;
+    }
+
+    public void setInformation(Information information) {
+        this.information = information;
+    }
+
     @Override
     public String toString() {
-        return "Purchase{" +
+        return "\nPurchase{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
