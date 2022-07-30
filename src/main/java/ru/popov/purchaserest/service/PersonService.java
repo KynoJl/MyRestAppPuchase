@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 @Transactional(readOnly = true)
 public class PersonService {
-    private PersonMapper personMapper;
+
 
     private final PersonRepository personRepository;
 

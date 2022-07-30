@@ -1,6 +1,6 @@
 package ru.popov.purchaserest.dto;
 
-import java.util.UUID;
+
 
 public class PersonDto {
     private Long id;
@@ -13,8 +13,6 @@ public class PersonDto {
         this.lastName = lastName;
         this.age = age;
     }
-
-
 
     public PersonDto() {
     }
