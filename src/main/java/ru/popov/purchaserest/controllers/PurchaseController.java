@@ -1,5 +1,6 @@
 package ru.popov.purchaserest.controllers;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,25 +34,20 @@ public class PurchaseController {
     }
 
     @PostMapping
-    public ResponseEntity<HttpStatus> create(@RequestBody PurchaseDto purchaseDto){
+    ResponseEntity <HttpStatus> create(@RequestBody PurchaseDto purchaseDto){
         purchaseService.saves(convertToPurchase(purchaseDto));
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id){
-        purchaseService.delete(id);
-    }
-
-
-
-    @PutMapping("/{id}")
-    public void update(@PathVariable Long id,@RequestBody PurchaseDto purchaseDto){
-        purchaseService.update(id,convertToPurchase(purchaseDto));
-    }
-    private Purchase convertToPurchase(PurchaseDto purchaseDto) {
-        Purchase purchase =  new Purchase();
+    public Purchase convertToPurchase(PurchaseDto purchaseDto){
+        Purchase purchase = new Purchase();
         purchase.setName(purchaseDto.getName());
+        purchase.setCount(purchaseDto.getCount());
+        purchase.setProduct(purchaseDto.getProduct());
+        purchase.setPerson(purchaseDto.getPerson());
         return purchase;
+
     }
+
+
 }

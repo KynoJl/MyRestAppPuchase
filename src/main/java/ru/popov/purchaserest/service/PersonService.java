@@ -3,7 +3,6 @@ package ru.popov.purchaserest.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.popov.purchaserest.mapper.PersonMapper;
 import ru.popov.purchaserest.models.Person;
 import ru.popov.purchaserest.repository.PersonRepository;
 
@@ -40,6 +39,7 @@ public class PersonService {
     public void delete(Long id) {
         personRepository.deleteById(id);
     }
+
     @Transactional
     public void update(Long id, Person person) {
        Person item = personRepository.findById(id).orElseThrow(RuntimeException::new);

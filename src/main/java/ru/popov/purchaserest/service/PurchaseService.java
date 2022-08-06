@@ -38,10 +38,6 @@ public class PurchaseService {
     public void delete(Long id) {
         purchaseRepository.deleteById(id);
     }
-    @Transactional
-    public void update(Long id, Purchase purchase) {
-        Purchase item = purchaseRepository.findById(id).orElseThrow(RuntimeException::new);
-        item.setName(purchase.getName());
 
     }
-}
+

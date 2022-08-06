@@ -16,19 +16,26 @@ public class Purchase {
     private Long id;
     @Column(name = "NAME")
     private String name;
+    @Column(name = "COUNT")
+    private int count;
 
-    @OneToOne
-    @JoinColumn(name = "information_id", referencedColumnName = "id")
-    private Information information;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private Product product;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_id")
+    private Person person;
 
 
     public Purchase() {
     }
 
-    public Purchase(String name, Information information) {
+    public Purchase(String name, int count, Product product, Person person) {
         this.name = name;
-        this.information = information;
+        this.count = count;
+        this.product = product;
+        this.person = person;
     }
 
     public Long getId() {
@@ -47,12 +54,28 @@ public class Purchase {
         this.name = name;
     }
 
-    public Information getInformation() {
-        return information;
+    public int getCount() {
+        return count;
     }
 
-    public void setInformation(Information information) {
-        this.information = information;
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @Override
@@ -60,8 +83,9 @@ public class Purchase {
         return "\nPurchase{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", count=" + count +
+                ", product=" + product +
+                ", person=" + person +
                 '}';
     }
-
-
 }

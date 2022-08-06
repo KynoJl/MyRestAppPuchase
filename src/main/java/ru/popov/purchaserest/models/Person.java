@@ -19,6 +19,9 @@ public class Person {
     @Column(name = "AGE")
     private int age;
 
+    @OneToOne(mappedBy = "person",cascade = CascadeType.ALL)
+    private Purchase purchase;
+
     public Person() {
     }
 
@@ -26,6 +29,13 @@ public class Person {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
+    }
+
+    public Person(String name, String lastName, int age, Purchase purchase) {
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+        this.purchase = purchase;
     }
 
     public Long getId() {
@@ -60,6 +70,14 @@ public class Person {
         this.age = age;
     }
 
+    public Purchase getPurchase() {
+        return purchase;
+    }
+
+    public void setPurchase(Purchase purchase) {
+        this.purchase = purchase;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -67,6 +85,7 @@ public class Person {
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
+                ", purchase=" + purchase +
                 '}';
     }
 }
