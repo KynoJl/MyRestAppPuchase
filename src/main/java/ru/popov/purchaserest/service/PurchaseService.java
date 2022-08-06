@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional(readOnly = true)
+
 public class PurchaseService {
     private final PurchaseRepository purchaseRepository;
 
@@ -31,22 +31,24 @@ public class PurchaseService {
         return foundPerson.orElse(null);
     }
 
-    @Transactional
+
     public void saves(Purchase purchase){
         purchaseRepository.save(purchase);
     }
 
-    @Transactional
+
     public void delete(Long id) {
         purchaseRepository.deleteById(id);
     }
 
-    @Transactional
+
     public void update(Long id, Purchase purchase) {
         Purchase item = purchaseRepository.findById(id).orElseThrow(RuntimeException::new);
         item.setName(purchase.getName());
         item.setCount(purchase.getCount());
         item.setPerson(purchase.getPerson());
+        item.setProduct(purchase.getProduct());
+        purchaseRepository.save(item);
     }
 
 }

@@ -19,22 +19,21 @@ public class Purchase {
     @Column(name = "COUNT")
     private int count;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "product_id")
-//    private Product product;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person person;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id",referencedColumnName = "id")
+    private Product product;
 
     public Purchase() {
     }
 
-    public Purchase(Long id, String name, int count, Person person) {
-        this.id = id;
+    public Purchase(String name, int count, Product product, Person person) {
         this.name = name;
         this.count = count;
+        this.product = product;
         this.person = person;
     }
 
@@ -60,6 +59,14 @@ public class Purchase {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Person getPerson() {

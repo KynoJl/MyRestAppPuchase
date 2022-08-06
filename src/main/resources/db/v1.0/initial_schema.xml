@@ -36,10 +36,16 @@
             <column name="name" type="varchar"/>
             <column name="count" type="integer"/>
             <column name="PERSON_ID" type="bigint"/>
+            <column name="PRODUCT_ID" type="bigint"/>
         </createTable>
         <addForeignKeyConstraint baseTableName="purchase" baseColumnNames="PERSON_ID"
                                  constraintName="purchase_person_id"
                                  referencedTableName="person"
+                                 referencedColumnNames="id"
+                                 onUpdate="CASCADE"/>
+        <addForeignKeyConstraint baseTableName="purchase" baseColumnNames="PRODUCT_ID"
+                                 constraintName="purchase_product_id"
+                                 referencedTableName="product"
                                  referencedColumnNames="id"
                                  onUpdate="CASCADE"/>
     </changeSet>

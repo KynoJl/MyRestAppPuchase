@@ -57,6 +57,7 @@ public class PurchaseController {
         purchase.setName(purchaseDto.getName());
         purchase.setCount(purchaseDto.getCount());
         purchase.setPerson(purchaseDto.getPerson());
+        purchase.setProduct(purchaseDto.getProduct());
         return purchase;
     }
 

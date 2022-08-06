@@ -7,17 +7,20 @@ public class PurchaseDto {
     private Long id;
     private String name;
     private int count;
-//    private Product product;
+
     private Person person;
+
+    private Product product;
 
     public PurchaseDto() {
     }
 
-    public PurchaseDto(Long id, String name, int count, Person person) {
+    public PurchaseDto(Long id, String name, int count, Person person, Product product) {
         this.id = id;
         this.name = name;
         this.count = count;
         this.person = person;
+        this.product = product;
     }
 
     public Long getId() {
@@ -50,5 +53,13 @@ public class PurchaseDto {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
