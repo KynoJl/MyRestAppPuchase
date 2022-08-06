@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ru.popov.purchaserest.models.Person;
 import ru.popov.purchaserest.models.Purchase;
+import ru.popov.purchaserest.repository.PersonRepository;
 import ru.popov.purchaserest.repository.PurchaseRepository;
 
 import java.util.List;
@@ -16,7 +18,7 @@ public class PurchaseService {
     private final PurchaseRepository purchaseRepository;
 
     @Autowired
-    public PurchaseService(PurchaseRepository purchaseRepository) {
+    public PurchaseService(PurchaseRepository purchaseRepository, PersonRepository personRepository, PersonRepository personRepository1) {
         this.purchaseRepository = purchaseRepository;
     }
 
@@ -39,5 +41,13 @@ public class PurchaseService {
         purchaseRepository.deleteById(id);
     }
 
+    @Transactional
+    public void update(Long id, Purchase purchase) {
+        Purchase item = purchaseRepository.findById(id).orElseThrow(RuntimeException::new);
+        item.setName(purchase.getName());
+        item.setCount(purchase.getCount());
+        item.setPerson(purchase.getPerson());
     }
+
+}
 

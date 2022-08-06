@@ -13,7 +13,7 @@ import ru.popov.purchaserest.service.PersonService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/p")
+@RequestMapping("/person")
 public class PersonController {
   private final PersonService personService;
 
@@ -44,8 +44,6 @@ public class PersonController {
     public void delete(@PathVariable("id") Long id){
         personService.delete(id);
     }
-
-
 
     @PutMapping("/{id}")
     public void update(@PathVariable Long id,@RequestBody PersonDto personDto){

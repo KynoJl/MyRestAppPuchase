@@ -24,6 +24,7 @@ public class Purchase {
 //    private Product product;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person person;
 
 
