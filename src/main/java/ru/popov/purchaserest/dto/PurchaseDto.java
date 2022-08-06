@@ -4,20 +4,19 @@ import ru.popov.purchaserest.models.Person;
 import ru.popov.purchaserest.models.Product;
 
 public class PurchaseDto {
-private Long id;
-private String name;
-private int count;
-private Product product;
-private Person person;
+    private Long id;
+    private String name;
+    private int count;
+//    private Product product;
+    private Person person;
 
     public PurchaseDto() {
     }
 
-    public PurchaseDto(Long id, String name, int count, Product product, Person person) {
+    public PurchaseDto(Long id, String name, int count, Person person) {
         this.id = id;
         this.name = name;
         this.count = count;
-        this.product = product;
         this.person = person;
     }
 
@@ -43,14 +42,6 @@ private Person person;
 
     public void setCount(int count) {
         this.count = count;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 
     public Person getPerson() {

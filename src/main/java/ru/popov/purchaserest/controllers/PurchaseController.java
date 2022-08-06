@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.popov.purchaserest.dto.PurchaseDto;
+import ru.popov.purchaserest.models.Person;
+import ru.popov.purchaserest.models.Product;
 import ru.popov.purchaserest.models.Purchase;
 import ru.popov.purchaserest.service.PurchaseService;
 
@@ -34,8 +36,9 @@ public class PurchaseController {
     }
 
     @PostMapping
-    ResponseEntity <HttpStatus> create(@RequestBody PurchaseDto purchaseDto){
-        purchaseService.saves(convertToPurchase(purchaseDto));
+    ResponseEntity <HttpStatus> create(@RequestBody Purchase purchase){
+        purchase.setPerson(purchase.getPerson());
+        purchaseService.saves(purchase);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -43,10 +46,8 @@ public class PurchaseController {
         Purchase purchase = new Purchase();
         purchase.setName(purchaseDto.getName());
         purchase.setCount(purchaseDto.getCount());
-        purchase.setProduct(purchaseDto.getProduct());
         purchase.setPerson(purchaseDto.getPerson());
         return purchase;
-
     }
 
 

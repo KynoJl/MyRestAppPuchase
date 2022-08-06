@@ -31,11 +31,11 @@ public class Person {
         this.age = age;
     }
 
-    public Person(String name, String lastName, int age, Purchase purchase) {
+    public Person(Long id, String name, String lastName, int age) {
+        this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.age = age;
-        this.purchase = purchase;
     }
 
     public Long getId() {
@@ -68,24 +68,5 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public Purchase getPurchase() {
-        return purchase;
-    }
-
-    public void setPurchase(Purchase purchase) {
-        this.purchase = purchase;
-    }
-
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                ", purchase=" + purchase +
-                '}';
     }
 }
