@@ -35,6 +35,7 @@
             </column>
             <column name="name" type="varchar"/>
             <column name="count" type="integer"/>
+            <column name="data_purchase" type="date"/>
             <column name="PERSON_ID" type="bigint"/>
             <column name="PRODUCT_ID" type="bigint"/>
         </createTable>

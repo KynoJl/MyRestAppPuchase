@@ -7,6 +7,7 @@ public class PurchaseDto {
     private Long id;
     private String name;
     private int count;
+    private String dataPurchase;
 
     private Person person;
 
@@ -15,10 +16,11 @@ public class PurchaseDto {
     public PurchaseDto() {
     }
 
-    public PurchaseDto(Long id, String name, int count, Person person, Product product) {
+    public PurchaseDto(Long id, String name, int count, String dataPurchase, Person person, Product product) {
         this.id = id;
         this.name = name;
         this.count = count;
+        this.dataPurchase = dataPurchase;
         this.person = person;
         this.product = product;
     }
@@ -61,5 +63,13 @@ public class PurchaseDto {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public String getDataPurchase() {
+        return dataPurchase;
+    }
+
+    public void setDataPurchase(String dataPurchase) {
+        this.dataPurchase = dataPurchase;
     }
 }

@@ -46,6 +46,7 @@ public class PurchaseService {
         Purchase item = purchaseRepository.findById(id).orElseThrow(RuntimeException::new);
         item.setName(purchase.getName());
         item.setCount(purchase.getCount());
+        item.setDatePurchaseLocal(purchase.getDatePurchaseLocal());
         item.setPerson(purchase.getPerson());
         item.setProduct(purchase.getProduct());
         purchaseRepository.save(item);

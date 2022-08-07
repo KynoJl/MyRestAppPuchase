@@ -3,7 +3,9 @@ package ru.popov.purchaserest.models;
 import liquibase.pro.packaged.I;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -18,6 +20,8 @@ public class Purchase {
     private String name;
     @Column(name = "COUNT")
     private int count;
+    @Column(name = "DATA_PURCHASE")
+    private LocalDate  datePurchaseLocal;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
@@ -30,11 +34,12 @@ public class Purchase {
     public Purchase() {
     }
 
-    public Purchase(String name, int count, Product product, Person person) {
+    public Purchase(String name, int count, LocalDate datePurchaseLocal, Person person, Product product) {
         this.name = name;
         this.count = count;
-        this.product = product;
+        this.datePurchaseLocal = datePurchaseLocal;
         this.person = person;
+        this.product = product;
     }
 
     public Long getId() {
@@ -61,12 +66,13 @@ public class Purchase {
         this.count = count;
     }
 
-    public Product getProduct() {
-        return product;
+    public LocalDate getDatePurchaseLocal() {
+        return datePurchaseLocal;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setDatePurchaseLocal(LocalDate datePurchaseLocal) {
+        this.datePurchaseLocal = datePurchaseLocal;
+
     }
 
     public Person getPerson() {
@@ -76,4 +82,13 @@ public class Purchase {
     public void setPerson(Person person) {
         this.person = person;
     }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
 }
