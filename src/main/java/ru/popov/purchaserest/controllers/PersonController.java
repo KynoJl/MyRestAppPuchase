@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import ru.popov.purchaserest.dto.PersonDto;
+import ru.popov.purchaserest.mapper.PersonMapper;
 import ru.popov.purchaserest.models.Person;
 import ru.popov.purchaserest.service.PersonService;
 
@@ -16,10 +17,12 @@ import java.util.List;
 @RequestMapping("/person")
 public class PersonController {
   private final PersonService personService;
+  private final PersonMapper personMapper;
 
     @Autowired
-    public PersonController(PersonService personService) {
+    public PersonController(PersonService personService, PersonMapper personMapper) {
         this.personService = personService;
+        this.personMapper = personMapper;
     }
 
 
@@ -36,7 +39,7 @@ public class PersonController {
 
     @PostMapping
     public ResponseEntity <HttpStatus> create(@RequestBody PersonDto personDto){
-        personService.saves(convertToPerson(personDto));
+        personService.saves(personMapper.convertToPerson(personDto));
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -47,17 +50,10 @@ public class PersonController {
 
     @PutMapping("/{id}")
     public void update(@PathVariable Long id,@RequestBody PersonDto personDto){
-        personService.update(id,convertToPerson(personDto));
+        personService.update(id,personMapper.convertToPerson(personDto));
     }
 
 
 
-  private Person convertToPerson(PersonDto personDto) {
-      Person person =  new Person();
-      person.setName(personDto.getName());
-      person.setLastName(personDto.getLastName());
-      person.setAge(personDto.getAge());
 
-      return person;
-  }
 }
