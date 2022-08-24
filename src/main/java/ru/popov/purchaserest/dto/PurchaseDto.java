@@ -72,4 +72,6 @@ public class PurchaseDto {
     public void setDataPurchase(String dataPurchase) {
         this.dataPurchase = dataPurchase;
     }
+
+
 }

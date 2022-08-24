@@ -11,6 +11,7 @@ import ru.popov.purchaserest.models.Purchase;
 import ru.popov.purchaserest.service.PurchaseService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/purchase")
@@ -26,8 +27,8 @@ public class PurchaseController {
 
 
     @GetMapping("/")
-    public List<Purchase> getPurchase(){
-        return purchaseService.fundAll();
+    public ResponseEntity <List<Purchase>> getPurchase(){
+        return  ResponseEntity.ok(purchaseService.fundAll()) ;
     }
 
     @GetMapping("/{id}")
@@ -37,9 +38,9 @@ public class PurchaseController {
     }
 
     @PostMapping
-    ResponseEntity <HttpStatus> create(@RequestBody PurchaseDto purchaseDto){
-        purchaseService.saves(purchaseMapper.convertToPurchase(purchaseDto));
-        return ResponseEntity.ok(HttpStatus.OK);
+    ResponseEntity  create(@RequestBody PurchaseDto purchaseDto){
+       Purchase item = purchaseService.save(purchaseMapper.convertToPurchase(purchaseDto));
+        return ResponseEntity.ok("Purchase "+ item.getName() + " CREATE, " + "id " + item.getId());
     }
 
     @DeleteMapping("/{id}")
@@ -51,8 +52,14 @@ public class PurchaseController {
     public void update(@PathVariable Long id,@RequestBody PurchaseDto purchaseDto){
         purchaseService.update(id,purchaseMapper.convertToPurchase(purchaseDto));
     }
+    @GetMapping("/fundWeek")
+    public List<Purchase> getWeeklyShoppingList(){
+     return purchaseService.fundWeek();
+    }
 
-
-
+    @GetMapping("/count")
+    public List<Purchase> getMaxCount(){
+        return purchaseService.getCount();
+    }
 
 }

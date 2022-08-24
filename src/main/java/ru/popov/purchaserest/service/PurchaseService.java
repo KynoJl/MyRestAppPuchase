@@ -2,13 +2,10 @@ package ru.popov.purchaserest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import ru.popov.purchaserest.models.Person;
 import ru.popov.purchaserest.models.Purchase;
-import ru.popov.purchaserest.repository.PersonRepository;
 import ru.popov.purchaserest.repository.PurchaseRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,11 +15,11 @@ public class PurchaseService {
     private final PurchaseRepository purchaseRepository;
 
     @Autowired
-    public PurchaseService(PurchaseRepository purchaseRepository, PersonRepository personRepository, PersonRepository personRepository1) {
+    public PurchaseService(PurchaseRepository purchaseRepository) {
         this.purchaseRepository = purchaseRepository;
     }
 
-    public List<Purchase> fundAll(){
+    public List<Purchase> fundAll() {
         return purchaseRepository.findAll();
     }
 
@@ -32,8 +29,9 @@ public class PurchaseService {
     }
 
 
-    public void saves(Purchase purchase){
+    public Purchase save(Purchase purchase) {
         purchaseRepository.save(purchase);
+        return purchase;
     }
 
 
@@ -52,5 +50,13 @@ public class PurchaseService {
         purchaseRepository.save(item);
     }
 
+    public List<Purchase> fundWeek() {
+        LocalDate localDateWeek = LocalDate.now().minusDays(7);
+        return purchaseRepository.findLastWeek(localDateWeek);
+    }
+
+    public List<Purchase> getCount() {
+        return  purchaseRepository.maxCount();
+    }
 }
 

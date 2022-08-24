@@ -1,12 +1,10 @@
 package ru.popov.purchaserest.models;
 
-import liquibase.pro.packaged.I;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.Objects;
+;
 
 
 @Entity
@@ -21,7 +19,7 @@ public class Purchase {
     @Column(name = "COUNT")
     private int count;
     @Column(name = "DATA_PURCHASE")
-    private LocalDate  datePurchaseLocal;
+    private LocalDate datePurchaseLocal= LocalDate.now();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
@@ -34,7 +32,8 @@ public class Purchase {
     public Purchase() {
     }
 
-    public Purchase(String name, int count, LocalDate datePurchaseLocal, Person person, Product product) {
+    public Purchase(Long id, String name, int count, LocalDate datePurchaseLocal, Person person, Product product) {
+        this.id = id;
         this.name = name;
         this.count = count;
         this.datePurchaseLocal = datePurchaseLocal;
@@ -91,4 +90,28 @@ public class Purchase {
         this.product = product;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Purchase purchase = (Purchase) o;
+        return count == purchase.count && Objects.equals(id, purchase.id) && Objects.equals(name, purchase.name) && Objects.equals(datePurchaseLocal, purchase.datePurchaseLocal) && Objects.equals(person, purchase.person) && Objects.equals(product, purchase.product);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, count, datePurchaseLocal, person, product);
+    }
+
+    @Override
+    public String toString() {
+        return "Purchase{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", count=" + count +
+                ", datePurchaseLocal=" + datePurchaseLocal +
+                ", person=" + person +
+                ", product=" + product +
+                '}';
+    }
 }
