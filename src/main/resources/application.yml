@@ -4,7 +4,7 @@ spring:
   liquibase:
     change-log: classpath:db/changelog.xml
     enabled: true
-    drop-first: true
+    drop-first: false
     default-schema: test
     liquibase-schema: test
 

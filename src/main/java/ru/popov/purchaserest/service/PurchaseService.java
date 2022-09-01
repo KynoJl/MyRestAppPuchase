@@ -56,7 +56,10 @@ public class PurchaseService {
     }
 
     public List<Purchase> getCount() {
-        return  purchaseRepository.maxCount();
+        LocalDate localDateMonths = LocalDate.now().minusMonths(1);
+        return  purchaseRepository.maxCount(localDateMonths);
     }
+
+
 }
 

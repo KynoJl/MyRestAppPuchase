@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.popov.purchaserest.models.Person;
+import ru.popov.purchaserest.models.Purchase;
 import ru.popov.purchaserest.repository.PersonRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +49,10 @@ public class PersonService {
         item.setLastName(person.getLastName());
         item.setAge(person.getAge());
     }
-
+    @Transactional
+    public List<Person> getSixMonths() {
+        LocalDate localDateSixMonths = LocalDate.now().minusMonths(6);
+        return personRepository.getSixMonths(localDateSixMonths);
+    }
 
 }

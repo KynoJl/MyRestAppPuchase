@@ -52,14 +52,6 @@ public class PurchaseController {
     public void update(@PathVariable Long id,@RequestBody PurchaseDto purchaseDto){
         purchaseService.update(id,purchaseMapper.convertToPurchase(purchaseDto));
     }
-    @GetMapping("/fundWeek")
-    public List<Purchase> getWeeklyShoppingList(){
-     return purchaseService.fundWeek();
-    }
 
-    @GetMapping("/count")
-    public List<Purchase> getMaxCount(){
-        return purchaseService.getCount();
-    }
 
 }
