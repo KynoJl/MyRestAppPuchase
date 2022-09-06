@@ -49,10 +49,6 @@ public class PersonService {
         item.setLastName(person.getLastName());
         item.setAge(person.getAge());
     }
-    @Transactional
-    public List<Person> getSixMonths() {
-        LocalDate localDateSixMonths = LocalDate.now().minusMonths(6);
-        return personRepository.getSixMonths(localDateSixMonths);
-    }
+
 
 }

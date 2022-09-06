@@ -2,12 +2,16 @@ package ru.popov.purchaserest.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import ru.popov.purchaserest.models.Person;
 import ru.popov.purchaserest.models.Purchase;
 import ru.popov.purchaserest.repository.PurchaseRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 
@@ -61,5 +65,14 @@ public class PurchaseService {
     }
 
 
+    public List<Purchase> getBuysOf() {
+       return   purchaseRepository.findAge18();
+    }
+
+    @Transactional
+    public List<Purchase> getSixMonths() {
+        LocalDate localDateSixMonths = LocalDate.now().minusMonths(6);
+        return purchaseRepository.getSixMonths(localDateSixMonths);
+    }
 }
 

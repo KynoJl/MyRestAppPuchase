@@ -15,7 +15,4 @@ import java.util.UUID;
 @Repository
 public interface PersonRepository extends JpaRepository <Person, Long> {
 
-        @Query("select w from Person w where w =(select t from Person t join Purchase p on t.id = p.person.id\n" +
-                " where p.count = (SELECT max(p.count) from Purchase p where p.datePurchaseLocal <= CURRENT_DATE and p.datePurchaseLocal >= :localDateSixMonths))")
-    List<Person> getSixMonths(@Param("localDateSixMonths") LocalDate localDateSixMonths);
 }

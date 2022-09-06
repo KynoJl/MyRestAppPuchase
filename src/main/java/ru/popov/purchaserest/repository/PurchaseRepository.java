@@ -9,6 +9,7 @@ import ru.popov.purchaserest.models.Purchase;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
@@ -18,10 +19,12 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
     @Query("Select t from Purchase t where t.datePurchaseLocal <= CURRENT_DATE and t.datePurchaseLocal >= :lastWeekDate")
     List<Purchase> findLastWeek(@Param("lastWeekDate") LocalDate lastWeekDate);
 
-    @Query ("Select w from Purchase w where w=(Select t from Purchase t where t.count = (select max(w.count) from Purchase w where w.datePurchaseLocal <= CURRENT_DATE and w.datePurchaseLocal >= :localDateMonths ))")
+    @Query ("select distinct t from Purchase  t where t.datePurchaseLocal <= CURRENT_DATE and t.datePurchaseLocal >= :localDateMonths and t.count = (select distinct max(w.count) from Purchase w)")
     List<Purchase> maxCount(@Param("localDateMonths") LocalDate localDateMonths) ;
 
+    @Query("select t from Purchase t where t.person.age = 18")
+    List<Purchase> findAge18();
 
-
-
+   @Query("select t from Purchase t where t.datePurchaseLocal <= CURRENT_DATE and t.datePurchaseLocal >= :localDateSixMonths and t.count = (select distinct max(w.count) from Purchase w)")
+    List<Purchase> getSixMonths(@Param("localDateSixMonths")LocalDate localDateSixMonths);
 }
